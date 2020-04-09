@@ -56,6 +56,16 @@ export class ProductService
             "price": 35.95,
             "starRating": 4.6,
             "imageUrl": "assets/images/xbox-controller.png"
+          },
+          {
+            "productId": 12,
+            "productName": "N95 Gloves",
+            "productCode": "GMG-0042",
+            "releaseDate": "October 15, 2020",
+            "description": "Corona Virus Mask",
+            "price": 35.95,
+            "starRating": 4.6,
+            "imageUrl": "assets/images/xbox-controller.png"
           }
         ];
     }
