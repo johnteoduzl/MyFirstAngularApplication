@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   // selector: 'pm-product-detail', //We can comment this out since we will not be nesting this as an image,rather it will be a single view page on its own
@@ -11,7 +11,7 @@ export class ProductDetailComponent implements OnInit {
 
   pageTitle: string = 'Product Detail';
   product : IProduct;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
     let id = +this.activatedRoute.snapshot.paramMap.get('id');
@@ -28,6 +28,10 @@ export class ProductDetailComponent implements OnInit {
     "starRating": 3.2,
     "imageUrl": "assets/images/leaf_rake.png"
     }
+  }
+
+  onBack():void{
+    this.router.navigate(['/products']);
   }
 
 }
