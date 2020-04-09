@@ -14,9 +14,9 @@ export class ProductListComponent implements OnInit
     imageWidth: number =50;
     imageMargin: number = 2;
     showImage: boolean = false;
-
-
-    _listFilter: string = 'cart';
+    _listFilter: string = '';
+    filteredProducts:IProduct[]=[];
+    products : IProduct[]=[];
 
     get listFilter():string{
       return this._listFilter;
@@ -27,11 +27,12 @@ export class ProductListComponent implements OnInit
       this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter):this.products;
     }
 
-    filteredProducts:IProduct[];
-    products : IProduct[]=[];
+    
 
       constructor(private productService : ProductService)
       {
+        this.products=this.productService.getProducts();
+        this.filteredProducts=this.products;
         
       }
       toggleImage():void{
@@ -40,8 +41,6 @@ export class ProductListComponent implements OnInit
       }
 
       ngOnInit():void{
-        this.products=this.productService.getProducts();
-        this.filteredProducts=this.products;
         console.log('In OnInit');
       }
 
