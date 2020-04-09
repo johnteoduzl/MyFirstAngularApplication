@@ -17,30 +17,45 @@ export class ProductListComponent implements OnInit
     _listFilter: string = '';
     filteredProducts:IProduct[]=[];
     products : IProduct[]=[];
+    errorMessage:string='';
 
     get listFilter():string{
       return this._listFilter;
     }
     set listFilter(value:string)
     {
-      this._listFilter=value;
-      this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter):this.products;
+      this._listFilter = value;
+    this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
     }
 
     
 
       constructor(private productService : ProductService)
       {
-        this.products=this.productService.getProducts();
-        this.filteredProducts=this.products;
-        
+       
+        // this.productService.getProducts().subscribe({
+        //   next: products=> {
+        //     this.products=this.products
+        //     this.filteredProducts=this.products;
+        //   },
+        //   error: err=> this.errorMessage = err
+        // });
       }
+
       toggleImage():void{
 
         this.showImage=!this.showImage;
       }
 
       ngOnInit():void{
+        
+        this.productService.getProducts().subscribe({
+          next: products=> {
+            this.products=products
+            this.filteredProducts=this.products;
+          },
+          error: err=> this.errorMessage = err
+        });
         console.log('In OnInit');
       }
 
