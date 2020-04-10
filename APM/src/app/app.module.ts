@@ -12,14 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductDetailGuard } from './products/product-detail.guard';
+import { ProductModule } from './products/product.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    ConvertToSpaces,
-    StarComponent,
-    ProductDetailComponent,
     WelcomeComponent
   ],
   imports: [
@@ -27,12 +24,11 @@ import { ProductDetailGuard } from './products/product-detail.guard';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: 'products', component: ProductListComponent},
-      {path: 'products/:id',component:ProductDetailComponent,canActivate:[ProductDetailGuard]},
       {path:'welcome', component: WelcomeComponent},
       {path:'',redirectTo: 'welcome',pathMatch: 'full'},
       {path:'**',redirectTo:'welcome',pathMatch:'full'}
-    ])
+    ]),
+    ProductModule
   ],
   bootstrap: [AppComponent]
 })
